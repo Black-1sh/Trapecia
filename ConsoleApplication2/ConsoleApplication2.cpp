@@ -1,21 +1,22 @@
-﻿#define GLWF
-#define GLEW
+﻿#define GLEW_DLL
+#define GLFW_DLL
 
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include "stdio.h"
+#include "math.h"
+#include "stdlib.h"
 
-void drawTrapezoid() {
-    glBegin(GL_POLYGON);
+void drawTriangle() {
+    glBegin(GL_TRIANGLES);
 
-    glColor3f(0.5, 0.5, 1.0);
+    // Цвет фигуры (r, g, b) = (0.3, 1.0, 1.0)
+    glColor3f(0.3, 1.0, 1.0);
 
-    glVertex2f(0.0, 0.0);
-    glVertex2f(0.8, 0.0);
-    glVertex2f(0.6, 0.6);
-    glVertex2f(0.2, 0.6);
+    // Вершины треугольника
+    glVertex2f(-0.5, -0.5);
+    glVertex2f(0.5, -0.5);
+    glVertex2f(0.0, 0.5);
 
     glEnd();
 }
@@ -26,7 +27,7 @@ int main() {
         return -1;
     }
 
-    GLFWwindow* window = glfwCreateWindow(500, 500, "Трапеция", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(500, 500, "triangle", NULL, NULL);
     if (!window) {
         printf("Ошибка создания окна\n");
         glfwTerminate();
@@ -41,11 +42,11 @@ int main() {
     }
 
     while (!glfwWindowShouldClose(window)) {
-
-        glClearColor(1.0, 1.0, 0.3, 1.0);
+        // Цвет фона (r, g, b) = (1.0, 1.0, 1.0)
+        glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        drawTrapezoid();
+        drawTriangle();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
